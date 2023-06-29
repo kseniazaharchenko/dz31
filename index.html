@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="index.js">
+  <title>Document</title>
+</head>
+
+<style>
+  .categories {
+    float: left;
+    width: 20%;
+  }
+
+  .products {
+    float: left;
+    width: 40%;
+  }
+
+  .product-info {
+    float: left;
+    width: 40%;
+  }
+</style>
+</head>
+
+<body>
+  <div class="categories">
+    <h2>Категорії</h2>
+    <ul id="category-list">
+      <li onclick="showProducts('category1')">Категорія 1</li>
+      <li onclick="showProducts('category2')">Категорія 2</li>
+      <li onclick="showProducts('category3')">Категорія 3</li>
+    </ul>
+  </div>
+
+  <div class="products">
+    <h2>Товари</h2>
+    <ul id="product-list">
+      <!-- Список товарів буде згенерований за допомогою JavaScript -->
+    </ul>
+  </div>
+
+  <div class="product-info">
+    <h2>Інформація про товар</h2>
+    <img
+      src="data:image/jpeg;base64,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"
+      alt="">
+    <div id="product-info"></div>
+    <button class="buy-button" id="buy-button-1">Купити</button>
+    <form id="order-form" style="display: none;">
+      <label for="name">ПІБ покупця:</label>
+      <input type="text" id="name" required>
+
+      <label for="city">Місто:</label>
+      <select id="city" required>
+        <option value="Київ">Київ</option>
+        <option value="Львів">Львів</option>
+        <option value="Одеса">Одеса</option>
+        <!-- Додайте інші міста, які вам потрібні -->
+      </select>
+
+      <label for="nova-poshta">Склад Нової пошти:</label>
+      <input type="text" id="nova-poshta" required>
+
+      <label for="payment-method">Спосіб оплати:</label>
+      <select id="payment-method" required>
+        <option value="Післяплата">Післяплата</option>
+        <option value="Оплата банківською карткою">Оплата банківською карткою</option>
+        <!-- Додайте інші способи оплати, які вам потрібні -->
+      </select>
+
+      <label for="quantity">Кількість продукції:</label>
+      <input type="number" id="quantity" required>
+
+      <label for="comment">Коментар до замовлення:</label>
+      <textarea id="comment"></textarea>
+
+      <button type="submit">Підтвердити замовлення</button>
+    </form>
+  </div>
+
+  <div class="">
+    <style>
+      table {
+        border-collapse: collapse;
+      }
+
+      table,
+      th,
+      td {
+        border: 1px solid black;
+        padding: 5px;
+      }
+    </style>
+    <form id="registrationForm">
+      <label for="firstName">Ім'я:</label>
+      <input type="text" id="firstName" name="firstName" required><br>
+
+      <label for="lastName">Прізвище:</label>
+      <input type="text" id="lastName" name="lastName" required><br>
+
+      <label for="birthdate">Дата народження:</label>
+      <input type="text" id="birthdate" name="birthdate" required><br>
+
+      <label>Стать:</label>
+      <input type="radio" id="male" name="gender" value="male">
+      <label for="male">Чоловік</label>
+      <input type="radio" id="female" name="gender" value="female">
+      <label for="female">Жінка</label><br>
+
+      <label for="city">Місто:</label>
+      <select id="city" name="city" required>
+        <option value="">Оберіть місто</option>
+        <option value="Київ">Київ</option>
+        <option value="Харків">Харків</option>
+        <option value="Львів">Львів</option>
+      </select><br>
+
+      <label for="address">Адреса:</label>
+      <textarea id="address" name="address" required></textarea><br>
+
+      <label>Мови, якими володієте:</label><br>
+      <input type="checkbox" id="english" name="languages" value="english">
+      <label for="english">Англійська</label><br>
+      <input type="checkbox" id="french" name="languages" value="french">
+      <label for="french">Французька</label><br>
+      <input type="checkbox" id="spanish" name="languages" value="spanish">
+      <label for="spanish">Іспанська</label><br>
+
+      <button type="button" onclick="displayTable()">Зберегти</button>
+    </form>
+
+    <div id="tableContainer"></div>
+  </div>
+
+  <body>
+    <script src="index.js"></script>
+  </body>
+
+</html>
